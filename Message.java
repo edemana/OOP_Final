@@ -52,4 +52,8 @@ public class Message {
             System.out.println(image);
         }
     }
+
+    public String getID() {
+        return ID;
+    }
 }
