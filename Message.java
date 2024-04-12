@@ -1,17 +1,18 @@
 import java.io.File;
 import java.util.Date;
+import java.util.Locale.Category;
 
 public class Message {
     private String text;
     private File image;
     private Category category;
     private Importance importance;
-    private User sender;
+    private UserComplaint sender;
     private Office recipient;
     private String ID;
     private Date date;
 
-    public Message(User sender, Office recipient, String text, File image) {
+    public Message(UserComplaint sender, Office recipient, String text, File image) {
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
@@ -19,7 +20,7 @@ public class Message {
         this.date = new Date();
     }
 
-    public Message(User sender, Office recipient, String text) {
+    public Message(UserComplaint sender, Office recipient, String text) {
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
@@ -27,7 +28,7 @@ public class Message {
         this.date = new Date();
     }
 
-    public User getSender() {
+    public UserComplaint Sender() {
         return sender;
     }
 
@@ -35,7 +36,7 @@ public class Message {
         return recipient;
     }
 
-    public void setSender(User sender) {
+    public void setSender(UserComplaint sender) {
         this.sender = sender;
     }
 
@@ -56,4 +57,49 @@ public class Message {
     public String getID() {
         return ID;
     }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public File getImage() {
+        return image;
+    }
+
+    public void setImage(File image) {
+        this.image = image;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Importance getImportance() {
+        return importance;
+    }
+
+    public void setImportance(Importance importance) {
+        this.importance = importance;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
 }
