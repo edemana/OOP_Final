@@ -4,7 +4,7 @@ public class Complaint extends Message {
     private Importance importance;
     private String status;
 
-    public Complaint(User sender, Office recipient, String text, File image, Importance importance) {
+    public Complaint(UserComplaints sender, Office recipient, String text, File image, Importance importance) {
         super(sender, recipient, text, image);
         this.importance = importance;
         this.status = "open";
