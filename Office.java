@@ -17,7 +17,7 @@ public class Office extends UserComplaints {
 
     public boolean respond(Complaint complaint, String text) {
         if (complaint.getRecipient().equals(this.departmentName)) {
-            complaint.getSender().send(new Message(complaint.getSender(), this, text));
+            complaint.getSender().send(complaint.getSender(), this, text);
             complaint.markResponded();
             return true;
         }

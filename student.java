@@ -9,7 +9,13 @@ public class student extends UserComplaints {
         this.studentID = studentID;
     }
 
-    public boolean followUp(Message.getID()){
+    public boolean followUp(Complaint msg){
+        //if the message is not responded to, send a follow up message
+        if (msg.getStatus() == "open"){
+            Message followUp = new Message(this, msg.getRecipient(), "Follow up message");
+            msg.getRecipient().receive(followUp, this);
+            return true;
+        }
         return true;
     }
 }

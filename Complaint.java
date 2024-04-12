@@ -1,12 +1,13 @@
 import java.io.File;
+import java.util.Locale.Category;
 
 public class Complaint extends Message {
-    private Importance importance;
+    private int chosen_Category;
     private String status;
 
-    public Complaint(UserComplaints sender, Office recipient, String text, File image, Importance importance) {
+    public Complaint(UserComplaints sender, Office recipient, String text, File image, Category category) {
         super(sender, recipient, text, image);
-        this.importance = importance;
+        this.chosen_Category = category.ordinal();
         this.status = "open";
     }
 
@@ -19,12 +20,8 @@ public class Complaint extends Message {
         this.status = "responded";
     }
 
-    public Importance getImportance() {
-        return importance;
-    }
-
-    public void setImportance(Importance importance) {
-        this.importance = importance;
+    public int getChosenCategory() {
+        return chosen_Category;
     }
 
     public String getStatus() {

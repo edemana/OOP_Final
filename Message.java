@@ -5,7 +5,7 @@ import java.util.Locale.Category;
 public class Message {
     private String text;
     private File image;
-    private Category category;
+    private enum Category {Water, Electricity, Internet, Bins, Others};
     private Importance importance;
     private UserComplaints sender;
     private Office recipient;
