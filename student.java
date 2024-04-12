@@ -12,7 +12,7 @@ public class student extends UserComplaints {
     public boolean followUp(Complaint msg){
         //if the message is not responded to, send a follow up message
         if (msg.getStatus() == "open"){
-            Message followUp = new Message(this, msg.getRecipient(), "Follow up message");
+            Message followUp = new Message(this, msg.getRecipient(), String.format("Follow up message on this message: %s", msg.getText()));
             msg.getRecipient().receive(followUp, this);
             return true;
         }
