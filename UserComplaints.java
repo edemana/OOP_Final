@@ -1,5 +1,9 @@
 import java.io.File;
+<<<<<<< HEAD
 
+=======
+import java.util.ArrayList;
+>>>>>>> f3cb5bc51d9cba58e2f67db19a308b996d7e9f12
 public class UserComplaints {
     private String userName;
     private String email;
@@ -33,9 +37,14 @@ public class UserComplaints {
         return true;
     }
 
-    // public void viewMessages(History user_History){
-
-    // }
+    public ArrayList<Message> viewMessages(String text){
+        if (text.equals("inbox")){
+           return history.getInbox();
+        }
+        else{
+            return history.getOutbox();
+        }
+    }
 
     public String getUserName() {
         return userName;
