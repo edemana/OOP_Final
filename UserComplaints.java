@@ -1,13 +1,7 @@
 import java.io.File;
-<<<<<<< HEAD
-
-=======
 import java.util.ArrayList;
-<<<<<<< HEAD
->>>>>>> f3cb5bc51d9cba58e2f67db19a308b996d7e9f12
-=======
 import java.util.Locale.Category;
->>>>>>> 5808a9c (Additions to the code)
+
 public class UserComplaints {
     private String userName;
     private String email;
@@ -26,7 +20,7 @@ public class UserComplaints {
         this.password = password;
     }
 
-<<<<<<< HEAD
+
     public boolean send(Office recepient, String message, File image) {
         Message msg = new Message(this, recepient, message);
         if (image != null) {
@@ -35,7 +29,7 @@ public class UserComplaints {
         recepient.receive(msg, this);
         history.addOutbox(msg);
         return true;
-=======
+
     public boolean send(Office recepient, String message, File image, Category category){
         if (this instanceof student) {
                 Complaint msg = new Complaint(this,recepient,message,image,category);
@@ -54,7 +48,7 @@ public class UserComplaints {
             history.addOutbox(msg);
 
             return true;
->>>>>>> 5808a9c (Additions to the code)
+
     }
 
     public boolean receive(Message msg, UserComplaints sender) {
