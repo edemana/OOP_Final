@@ -18,16 +18,12 @@ public class UserComplaints {
     }
 
     public boolean send(Office recepient, String message, File image){
-        Message msg = new Message(this,recepient,message,image);
+        Message msg = new Message(this,recepient,message);
+        if (image != null) {
+            msg = new Message(this,recepient,message,image);
+        }
         recepient.receive(msg,this); 
         history.addOutbox(msg);
-        return true;
-    }
-
-    public boolean send(Office recepient, String message){
-        Message msg = new Message(this,recepient,message);
-        recepient.receive(msg, this);
-        history.addOutbox(msg); 
         return true;
     }
 
