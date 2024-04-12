@@ -32,23 +32,21 @@ public class UserComplaints {
     }
 
     public boolean send(Office recepient, String message, File image, Category category){
-        if (this instanceof student) {
-                Complaint msg = new Complaint(this,recepient,message,image,category);
-                recepient.receive(msg,this); 
-                history.addOutbox(msg);
-                return true;
-        }
+        Complaint msg = new Complaint(this,recepient,message,image,category);
+        recepient.receive(msg,this); 
+        history.addOutbox(msg);
+        return true;
 
     }
     public boolean send(UserComplaints recepient, String message, File image){
-            Message msg = new Message(this,recepient,message);
-            if (image != null) {
-                msg = new Message(this,recepient,message,image);
-            }
-            recepient.receive(msg,this); 
-            history.addOutbox(msg);
+        Message msg = new Message(this,recepient,message);
+        if (image != null) {
+            msg = new Message(this,recepient,message,image);
+        }
+        recepient.receive(msg,this); 
+        history.addOutbox(msg);
 
-            return true;
+        return true;
 
     }
 

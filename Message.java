@@ -8,11 +8,11 @@ public class Message {
     private enum Category {Water, Electricity, Internet, Bins, Others};
     private Importance importance;
     private UserComplaints sender;
-    private Office recipient;
+    private UserComplaints recipient;
     private String ID;
     private Date date;
 
-    public Message(UserComplaints sender, Office recipient, String text, File image) {
+    public Message(UserComplaints sender, UserComplaints recipient, String text, File image) {
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
@@ -20,7 +20,7 @@ public class Message {
         this.date = new Date();
     }
 
-    public Message(UserComplaints sender, Office recipient, String text) {
+    public Message(UserComplaints sender, UserComplaints recipient, String text) {
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
@@ -32,7 +32,7 @@ public class Message {
         return sender;
     }
 
-    public Office getRecipient() {
+    public UserComplaints getRecipient() {
         return recipient;
     }
 
@@ -72,14 +72,6 @@ public class Message {
 
     public void setImage(File image) {
         this.image = image;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public Importance getImportance() {
