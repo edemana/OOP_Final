@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Office extends UserComplaint {
+public class Office extends UserComplaints {
     private String departmentName;
     private List<Complaint> complaints;
 
     public Office(String departmentName, String email, String password) {
-        super(email, password);
+        super(departmentName, email, password);
         this.departmentName = departmentName;
         this.complaints = new ArrayList<>();
     }

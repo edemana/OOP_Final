@@ -1,8 +1,9 @@
-
+import java.io.File;
 public class UserComplaints {
     private String userName;
     private String email;
     private String password;
+    private History history;
 
     //private History history
 
@@ -16,13 +17,24 @@ public class UserComplaints {
         this.password = password;
     }
 
-    // public boolean send(Message msg, Office recipient){
-        
-    // }
+    public boolean send(Office recepient, String message, File image){
+        Message msg = new Message(this,recepient,message,image);
+        recepient.receive(msg,this); 
+        history.addOutbox(msg);
+        return true;
+    }
 
-    // public boolean receive(Message msg,Office sender){
+    public boolean send(Office recepient, String message){
+        Message msg = new Message(this,recepient,message);
+        recepient.receive(msg, this);
+        history.addOutbox(msg); 
+        return true;
+    }
 
-    // }
+    public boolean receive(Message msg,UserComplaints sender){
+        history.addInbox(msg);
+        return true;
+    }
 
     // public void viewMessages(History user_History){
 

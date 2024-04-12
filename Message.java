@@ -7,12 +7,12 @@ public class Message {
     private File image;
     private Category category;
     private Importance importance;
-    private UserComplaint sender;
+    private UserComplaints sender;
     private Office recipient;
     private String ID;
     private Date date;
 
-    public Message(UserComplaint sender, Office recipient, String text, File image) {
+    public Message(UserComplaints sender, Office recipient, String text, File image) {
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
@@ -20,7 +20,7 @@ public class Message {
         this.date = new Date();
     }
 
-    public Message(UserComplaint sender, Office recipient, String text) {
+    public Message(UserComplaints sender, Office recipient, String text) {
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
@@ -28,7 +28,7 @@ public class Message {
         this.date = new Date();
     }
 
-    public UserComplaint Sender() {
+    public UserComplaints Sender() {
         return sender;
     }
 
@@ -36,7 +36,7 @@ public class Message {
         return recipient;
     }
 
-    public void setSender(UserComplaint sender) {
+    public void setSender(UserComplaints sender) {
         this.sender = sender;
     }
 
