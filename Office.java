@@ -5,8 +5,8 @@ public class Office extends UserComplaints {
     private String departmentName;
     private List<Complaint> complaints;
 
-    public Office(String departmentName, String email, String password) {
-        super(departmentName, email, password);
+    public Office(String departmentName, String userName, String email, String password) {
+        super(userName, email, password);
         this.departmentName = departmentName;
         this.complaints = new ArrayList<>();
     }

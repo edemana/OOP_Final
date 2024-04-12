@@ -34,4 +34,10 @@ public class Complaint extends Message {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public UserComplaints getSender() {
+        return (UserComplaints) super.getSender();
+
+    }
 }

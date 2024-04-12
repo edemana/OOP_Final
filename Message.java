@@ -28,7 +28,7 @@ public class Message {
         this.date = new Date();
     }
 
-    public UserComplaints Sender() {
+    public UserComplaints getSender() {
         return sender;
     }
 
