@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Office extends User {
+public class Office extends UserComplaint {
     private String departmentName;
     private List<Complaint> complaints;
 
@@ -24,10 +24,6 @@ public class Office extends User {
         return false;
     }
 
-    public List<Complaint> getComplaints() {
-        return complaints;
-    }
-
     public List<Complaint> topFiveComplaints() {
         List<Complaint> topFive = new ArrayList<>();
         // Assuming we want to return the first five complaints in the list
@@ -36,4 +32,21 @@ public class Office extends User {
         }
         return topFive;
     }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public List<Complaint> getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(List<Complaint> complaints) {
+        this.complaints = complaints;
+    }
+
 }
