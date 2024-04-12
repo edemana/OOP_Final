@@ -1,16 +1,16 @@
 
-public class userComplaints {
+public class UserComplaints {
     private String userName;
     private String email;
     private String password;
 
     //private History history
 
-    public userComplaints(){
+    public UserComplaints(){
 
     }
 
-    public userComplaints(String userName, String email, String password){
+    public UserComplaints(String userName, String email, String password){
         this.userName = userName;
         this.email = email;
         this.password = password;
