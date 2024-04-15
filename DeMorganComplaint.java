@@ -1,15 +1,27 @@
-
+import java.io.File;
 
 public class DeMorganComplaint {
-    // manage state of the user
+    // Manage state of the user
     final int STATE_LOGIN = 0;
     final int STATE_SEND = 1;
     final int STATE_RECEIVE = 2;
     final int STATE_VIEW = 3;
 
     int state = STATE_LOGIN;
+    UserComplaints user;
+
     public static void main(String[] args) {
-        // GUI of the application interaction with the user
+        // Create an instance of DeMorganComplaint
+        DeMorganComplaint complaintSystem = new DeMorganComplaint();
+
+        // Simulate user interactions
+        complaintSystem.login();
+
+        // Simulate sending a complaint
+        complaintSystem.send();
+
+        // Simulate logging out
+        complaintSystem.logout();
     }
 
     public int getState() {
@@ -22,46 +34,62 @@ public class DeMorganComplaint {
 
     public void login() {
         if (state == STATE_LOGIN) {
-            // login
+            // Perform login
+            user = new UserComplaints("John Doe", "john@example.com", "password");
             setState(STATE_VIEW);
+            System.out.println("Logged in successfully.");
         } else {
-            // throw error
+            // Throw error
+            System.out.println("Error: Already logged in.");
         }
     }
 
     public void send() {
         if (state == STATE_VIEW) {
-            // send
+            // Simulate sending a complaint
+            File image = new File("complaint_image.jpg");
+            user.send(new Office("IT Department", "IT", "it@example.com", "password"), "Internet is down", image);
             setState(STATE_SEND);
+            System.out.println("Complaint sent successfully.");
         } else {
-            // throw error
+            // Throw error
+            System.out.println("Error: Cannot send complaint. Please login first.");
         }
     }
 
     public void receive() {
         if (state == STATE_VIEW) {
-            // receive
+            // Simulate receiving complaints
+            System.out.println("Checking for new complaints...");
+            // Code to receive complaints goes here
             setState(STATE_RECEIVE);
         } else {
-            // throw error
+            // Throw error
+            System.out.println("Error: Cannot receive complaints. Please login first.");
         }
     }
     
     public void view() {
         if (state == STATE_LOGIN) {
-            // throw error
+            // Throw error
+            System.out.println("Error: Cannot view complaints. Please login first.");
         } else {
-            // view
+            // Simulate viewing complaints
+            System.out.println("Viewing complaints...");
+            // Code to view complaints goes here
             setState(STATE_VIEW);
         }
     }
 
     public void logout() {
-        if (state == STATE_VIEW) {
-            // logout
+        if (state == STATE_VIEW || state == STATE_SEND) {
+            // Simulate logout
+            user = null;
             setState(STATE_LOGIN);
+            System.out.println("Logged out successfully.");
         } else {
-            // throw error
+            // Throw error
+            System.out.println("Error: Cannot logout. No user logged in.");
         }
-    }
+    }    
 }

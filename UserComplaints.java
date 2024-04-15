@@ -18,6 +18,7 @@ public class UserComplaints {
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.history = new History();
     }
 
 
