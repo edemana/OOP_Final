@@ -36,7 +36,7 @@ public class UserComplaints {
      * @param image The image file attached to the message (can be null if no image).
      * @return True if the message is sent successfully, false otherwise.
      */
-    public boolean send(Office recipient, String message, File image) {
+    public boolean send(Office recipient, String message,String image) {
         Message msg = new Message(this, recipient, message);
         if (image != null) {
             msg = new Message(this, recipient, message, image);
@@ -54,7 +54,7 @@ public class UserComplaints {
      * @param category The category of the complaint.
      * @return True if the complaint is sent successfully, false otherwise.
      */
-    public boolean send(Office recipient, String message, File image, Category category) {
+    public boolean send(Office recipient, String message,String image, Message.Category category) {
         Complaint msg = new Complaint(this, recipient, message, image, category);
         recipient.receive(msg, this);
         history.addOutbox(msg);
@@ -68,7 +68,7 @@ public class UserComplaints {
      * @param image The image file attached to the message (can be null if no image).
      * @return True if the message is sent successfully, false otherwise.
      */
-    public boolean send(UserComplaints recipient, String message, File image) {
+    public boolean send(UserComplaints recipient, String message,String image) {
         Message msg = new Message(this, recipient, message);
         if (image != null) {
             msg = new Message(this, recipient, message, image);

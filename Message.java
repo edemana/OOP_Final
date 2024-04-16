@@ -3,9 +3,9 @@ import java.util.Date;
 
 public class Message {
     private String text; // Text content of the message
-    private File image; // Image attached to the message
+    private String image; // Image attached to the message
     public enum Category {Water, Electricity, Internet, Bins, Others}; // Enum for general complaint categories
-    public enum ClimateChangeCategory {Water, Electricity, Internet, Bins} // Enum for climate change-related complaint categories
+    public enum ClimateChangeCategory {Water, Electricity, Internet, Bins}; // Enum for climate change-related complaint categories
     private UserComplaints sender; // Sender of the message
     private UserComplaints recipient; // Recipient of the message
     private String ID; // Unique identifier for the message
@@ -20,7 +20,7 @@ public class Message {
      * @param image The image attached to the message.
      * @throws IllegalArgumentException if the sender, recipient, or text is null.
      */
-    public Message(UserComplaints sender, UserComplaints recipient, String text, File image) {
+    public Message(UserComplaints sender, UserComplaints recipient, String text, String image) {
         // Check if sender, recipient, or text is null, and throw an exception if so
         if (sender == null || recipient == null || text == null) {
             throw new IllegalArgumentException("Sender, recipient, and text cannot be null.");
@@ -146,11 +146,11 @@ public class Message {
      * Gets the image content of the message.
      * @return The message's image file.
      */
-    public File getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(File image) {
+    public void setImage(String image) {
         this.image = image;
         }
    
@@ -158,14 +158,6 @@ public class Message {
      * Sets the status of the message.
      * @param status The status to set for the message.
      */
-    public Date getDate() {
-    return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public void setStatus(String status) {
         this.status = status;
     }

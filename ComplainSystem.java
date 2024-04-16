@@ -506,7 +506,7 @@ public class ComplainSystem extends JFrame {
                 newFrame.setVisible(true);
             }
         });
-        setFavicon("DeMorgan.jpg")
+        setFavicon("DeMorgan.jpg");
         
     }
 
