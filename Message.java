@@ -1,97 +1,160 @@
 import java.io.File;
 import java.util.Date;
-import java.util.Locale.Category;
 
 public class Message {
     private String text;
     private File image;
     private enum Category {Water, Electricity, Internet, Bins, Others};
-    private Importance importance;
     private UserComplaints sender;
     private UserComplaints recipient;
     private String ID;
     private Date date;
 
+    /**
+     * Creates a new Message object with text and an optional image.
+     * @param sender The UserComplaints object representing the sender of the message.
+     * @param recipient The UserComplaints object representing the recipient of the message.
+     * @param text The text content of the message.
+     * @param image An optional image file associated with the message.
+     * @throws IllegalArgumentException If sender, recipient, or text is null.
+     */
     public Message(UserComplaints sender, UserComplaints recipient, String text, File image) {
+        if (sender == null || recipient == null || text == null) {
+            throw new IllegalArgumentException("Sender, recipient, and text cannot be null");
+        }
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
         this.image = image;
-        this.date = new Date();
+        this.date = new Date(); // Sets the creation date
     }
 
+    /**
+     * Creates a new Message object with text.
+     * @param sender The UserComplaints object representing the sender of the message.
+     * @param recipient The UserComplaints object representing the recipient of the message.
+     * @param text The text content of the message.
+     * @throws IllegalArgumentException If sender, recipient, or text is null.
+     */
     public Message(UserComplaints sender, UserComplaints recipient, String text) {
+        if (sender == null || recipient == null || text == null) {
+            throw new IllegalArgumentException("Sender, recipient, and text cannot be null");
+        }
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
         this.image = null;
-        this.date = new Date();
+        this.date = new Date(); // Sets the creation date
     }
 
+    // Getters and Setters 
+    /**
+     * Gets the sender of the message.
+     * @return The UserComplaints object representing the sender.
+     */
     public UserComplaints getSender() {
         return sender;
     }
-
+       
+    /**
+     * Sets the sender of the message.
+     * @param sender The UserComplaints object to be set as the sender.
+     * @throws IllegalArgumentException If the provided sender is null.
+     */
+    public void setSender(UserComplaints sender) {
+        if (sender == null) {
+            throw new IllegalArgumentException("Sender cannot be null");
+        }
+        this.sender = sender;
+    }
+    
+    /**
+     * Sets the recipient of the message (assuming Office extends UserComplaints for flexibility).
+     * @param recipient The UserComplaints object to be set as the recipient. 
+     * @throws IllegalArgumentException If the provided recipient is null.
+     */
+    public void setRecipient(UserComplaints recipient) { 
+        if (recipient == null) {
+            throw new IllegalArgumentException("Recipient cannot be null");
+        }
+        this.recipient = recipient;
+    }
+       
+    /**
+     * Gets the recipient of the message.
+     * @return The UserComplaints object representing the recipient.
+     */
     public UserComplaints getRecipient() {
         return recipient;
     }
-
-    public void setSender(UserComplaints sender) {
-        this.sender = sender;
-    }
-
-    public void setRecipient(Office recipient) {
-        this.recipient = recipient;
-    }
-
-    public void displayMessage() {
-        System.out.println("To: " + recipient);
-        System.out.println("From: " + sender + "\nDate: " + date);
-        System.out.println(text);
-        if (image != null) {
-            System.out.println();
-            System.out.println(image);
-        }
-    }
-
+    
+    /**
+     * Gets the unique ID of the message.
+     * @return The message's ID.
+     */
     public String getID() {
         return ID;
     }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public File getImage() {
-        return image;
-    }
-
-    public void setImage(File image) {
-        this.image = image;
-    }
-
-    public Importance getImportance() {
-        return importance;
-    }
-
-    public void setImportance(Importance importance) {
-        this.importance = importance;
-    }
-
+       
+    /**
+     * Sets the unique ID of the message.
+     * @param ID The ID to be assigned to the message. 
+     */
     public void setID(String ID) {
         this.ID = ID;
     }
-
-    public Date getDate() {
-        return date;
-    }
-
+       
+    /**
+     * Sets the creation date of the message.
+     * @param date The Date object representing the creation time.
+     */
     public void setDate(Date date) {
         this.date = date;
     }
+    
+    /**
+     * Gets the text content of the message.
+     * @return The message's text.
+     */
+    public String getText() {
+        return text;
+    }
+    
+    /**
+     * Sets the text content of the message.
+     * @param text The text to be set as the message's content.
+     * @throws IllegalArgumentException If the provided text is null.
+     */
+    public void setText(String text) {
+        if (text == null) {
+            throw new IllegalArgumentException("Text cannot be null");
+        }
+        this.text = text;
+    }
+    
+    /**
+     * Gets the image attachment associated with the message.
+     * @return The File object representing the image, or null if no image is attached.
+     */
+    public File getImage() {
+        return image;
+        }
+       
+    /**
+     * Sets the image attachment of the message.
+     * @param image The File object representing the image to be attached.
+     */
+    public void setImage(File image) {
+        this.image = image;
+        }
+   
+    /**
+     * Gets the creation date of the message.
+     * @return The Date object representing the creation time. 
+     */
+    public Date getDate() {
+    return date;
+    }
 
+    
 }
