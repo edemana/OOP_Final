@@ -2,17 +2,30 @@ import java.io.File;
 import java.util.Date;
 
 public class Message {
-    private String text;
-    private File image;
-    public enum Category {Water, Electricity, Internet, Bins, Others};
-    public enum ClimateChangeCategory {Water, Electricity, Internet, Bins}    
-    private UserComplaints sender;
-    private UserComplaints recipient;
-    private String ID;
-    private Date date;
-    private String status;
+    private String text; // Text content of the message
+    private File image; // Image attached to the message
+    public enum Category {Water, Electricity, Internet, Bins, Others}; // Enum for general complaint categories
+    public enum ClimateChangeCategory {Water, Electricity, Internet, Bins} // Enum for climate change-related complaint categories
+    private UserComplaints sender; // Sender of the message
+    private UserComplaints recipient; // Recipient of the message
+    private String ID; // Unique identifier for the message
+    private Date date; // Date when the message was created
+    private String status; // Status of the message (e.g., open, closed)
 
+   /**
+     * Constructor for creating a general message.
+     * @param sender The sender of the message.
+     * @param recipient The recipient of the message.
+     * @param text The text content of the message.
+     * @param image The image attached to the message.
+     * @throws IllegalArgumentException if the sender, recipient, or text is null.
+     */
     public Message(UserComplaints sender, UserComplaints recipient, String text, File image) {
+        // Check if sender, recipient, or text is null, and throw an exception if so
+        if (sender == null || recipient == null || text == null) {
+            throw new IllegalArgumentException("Sender, recipient, and text cannot be null.");
+        }
+        // Initialize the message attributes
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
@@ -21,7 +34,7 @@ public class Message {
     }
 
     /**
-     * Creates a new Message object with text.
+     * Constructor for creating a new Message object without an image.
      * @param sender The UserComplaints object representing the sender of the message.
      * @param recipient The UserComplaints object representing the recipient of the message.
      * @param text The text content of the message.
