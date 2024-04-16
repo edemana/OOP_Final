@@ -34,15 +34,16 @@ public class Office extends UserComplaints {
      * @throws InvalidComplaintException If the office is not the intended recipient of the complaint.
      */
     public boolean respond(Complaint complaint, String text) {
-        if (!complaint.getRecipient().equals(this.departmentName)) {
-            throw new InvalidComplaintException("This office is not the intended recipient of the complaint");
+        if (complaint.getRecipient().equals(this)) {
+            UserComplaints sender = complaint.getSender();
+            sender.receive(new Message(this, sender, text), this);
+            complaint.markResponded();
+            return true;
         }
-
-        // Send a message back to the sender of the complaint
-        complaint.getRecipient().send((UserComplaints) complaint.getSender(), text, null); 
-        complaint.markResponded();
-        return true; 
+        return false;
     }
+      
+
 
     /**
      * Returns the top five complaints received by the office (assuming top five means first five).

@@ -1,21 +1,13 @@
 import java.io.File;
 
 public class Complaint extends Message {
-    private int chosen_Category; // Stores the index of the selected category
-    private String status;       // Indicates the status of the complaint (e.g., "open", "responded")
+    private Message.Category chosen_Category;
+    private String status;
 
-    /**
-     * Creates a new Complaint object.
-     * @param sender The UserComplaints object representing the person making the complaint.
-     * @param recipient The Office object representing the recipient of the complaint.
-     * @param text The text content of the complaint.
-     * @param image An optional image related to the complaint.
-     * @param category The Category of the complaint.
-     */
-    public Complaint(UserComplaints sender, Office recipient, String text, File image, Category category) {
-        super(sender, recipient, text, image); 
-        this.chosen_Category = category.ordinal();  // Store the Category's ordinal value
-        this.status = "open"; // Initialize the complaint's status as "open"
+    public Complaint(UserComplaints sender, Office recipient, String text, String image, Message.Category category) {
+        super(sender, recipient, text, image);
+        this.chosen_Category = category;
+        this.status = "open";
     }
 
     /**
@@ -39,10 +31,7 @@ public class Complaint extends Message {
         this.status = "responded";
     }
 
-    /**
-     * @return The ordinal value representing the chosen complaint category.
-     */
-    public int getChosenCategory() {
+    public Message.Category getChosenCategory() {
         return chosen_Category;
     }
 
@@ -68,10 +57,11 @@ public class Complaint extends Message {
      */
     @Override
     public UserComplaints getSender() {
-        UserComplaints sender = (UserComplaints) super.getSender();
-        if (sender == null) {
-            throw new ClassCastException("Complaint sender must be a UserComplaints object");
-        }
-        return sender;
+        return (UserComplaints) super.getSender();
+
+    }
+
+    public Message.Category getCategory() {
+        return this.chosen_Category;
     }
 }

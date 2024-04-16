@@ -1,6 +1,6 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Locale.Category;
+
 
 public class UserComplaints {
     private String userName;
@@ -22,7 +22,7 @@ public class UserComplaints {
     }
 
 
-    public boolean send(Office recepient, String message, File image) {
+    public boolean send(Office recepient, String message, String image) {
         Message msg = new Message(this, recepient, message);
         if (image != null) {
             msg = new Message(this, recepient, message, image);
@@ -32,14 +32,14 @@ public class UserComplaints {
         return true;
     }
 
-    public boolean send(Office recepient, String message, File image, Category category){
+    public boolean send(Office recepient, String message, String image, Message.Category category){
         Complaint msg = new Complaint(this,recepient,message,image,category);
         recepient.receive(msg,this); 
         history.addOutbox(msg);
         return true;
 
     }
-    public boolean send(UserComplaints recepient, String message, File image){
+    public boolean send(UserComplaints recepient, String message, String image){
         Message msg = new Message(this,recepient,message);
         if (image != null) {
             msg = new Message(this,recepient,message,image);
@@ -52,18 +52,25 @@ public class UserComplaints {
     }
 
     public boolean receive(Message msg, UserComplaints sender) {
+        if (history == null) {
+            System.out.println("Error: History object is not initialized.");
+            return false;
+        }
         history.addInbox(msg);
         return true;
     }
+    
 
-    public ArrayList<Message> viewMessages(String text){
-        if (text.equals("inbox")){
-           return history.getInbox();
+    public ArrayList<Message> viewMessages(String text) {
+        ArrayList<Message> messagesToShow = new ArrayList<>();
+        if (text.equals("inbox")) {
+            messagesToShow = history.getInbox();
+        } else {
+            messagesToShow = history.getOutbox();
         }
-        else{
-            return history.getOutbox();
-        }
+        return messagesToShow;
     }
+    
 
     public String getUserName() {
         return userName;

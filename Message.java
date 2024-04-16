@@ -3,25 +3,17 @@ import java.util.Date;
 
 public class Message {
     private String text;
-    private File image;
-    private enum Category {Water, Electricity, Internet, Bins, Others};
+    private String image;
+    public enum Category {Water, Electricity, Internet, Bins, Others};
+    public enum ClimateChangeCategory {Water, Electricity, Internet, Bins}    
+    private Importance importance;
     private UserComplaints sender;
     private UserComplaints recipient;
     private String ID;
     private Date date;
+    private String status;
 
-    /**
-     * Creates a new Message object with text and an optional image.
-     * @param sender The UserComplaints object representing the sender of the message.
-     * @param recipient The UserComplaints object representing the recipient of the message.
-     * @param text The text content of the message.
-     * @param image An optional image file associated with the message.
-     * @throws IllegalArgumentException If sender, recipient, or text is null.
-     */
-    public Message(UserComplaints sender, UserComplaints recipient, String text, File image) {
-        if (sender == null || recipient == null || text == null) {
-            throw new IllegalArgumentException("Sender, recipient, and text cannot be null");
-        }
+    public Message(UserComplaints sender, UserComplaints recipient, String text, String image) {
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
@@ -131,20 +123,12 @@ public class Message {
         }
         this.text = text;
     }
-    
-    /**
-     * Gets the image attachment associated with the message.
-     * @return The File object representing the image, or null if no image is attached.
-     */
-    public File getImage() {
+
+    public String getImage() {
         return image;
-        }
-       
-    /**
-     * Sets the image attachment of the message.
-     * @param image The File object representing the image to be attached.
-     */
-    public void setImage(File image) {
+    }
+
+    public void setImage(String image) {
         this.image = image;
         }
    
@@ -156,5 +140,15 @@ public class Message {
     return date;
     }
 
-    
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 }
