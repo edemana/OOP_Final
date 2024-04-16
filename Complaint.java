@@ -1,12 +1,26 @@
 import java.io.File;
 
+/**
+ * Represents a complaint message.
+ */
 public class Complaint extends Message {
-    private Message.Category chosen_Category;
-    private String status;
+    private Message.Category chosen_Category; // Category chosen for the complaint
+    private String status; // Status of the complaint
 
-    public Complaint(UserComplaints sender, Office recipient, String text, String image, Message.Category category) {
+    /**
+     * Constructor for creating a complaint message.
+     * @param sender The sender of the complaint.
+     * @param recipient The recipient of the complaint.
+     * @param text The text content of the complaint.
+     * @param image The image attached to the complaint.
+     * @param category The category of the complaint.
+     */
+    public Complaint(UserComplaints sender, Office recipient, String text, File image, Message.Category category) {
+        // Call the superclass constructor to initialize sender, recipient, text, and image
         super(sender, recipient, text, image);
+        // Set the chosen category for the complaint
         this.chosen_Category = category;
+        // Set the initial status of the complaint to "open"
         this.status = "open";
     }
 
@@ -61,7 +75,11 @@ public class Complaint extends Message {
 
     }
 
+   /**
+    * Gets the category of the complaint message.
+    * @return The category chosen for the complaint message.
+    */
     public Message.Category getCategory() {
-        return this.chosen_Category;
+    return this.chosen_Category;
     }
 }
