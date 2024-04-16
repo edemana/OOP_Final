@@ -3,17 +3,16 @@ import java.util.Date;
 
 public class Message {
     private String text;
-    private String image;
+    private File image;
     public enum Category {Water, Electricity, Internet, Bins, Others};
     public enum ClimateChangeCategory {Water, Electricity, Internet, Bins}    
-    private Importance importance;
     private UserComplaints sender;
     private UserComplaints recipient;
     private String ID;
     private Date date;
     private String status;
 
-    public Message(UserComplaints sender, UserComplaints recipient, String text, String image) {
+    public Message(UserComplaints sender, UserComplaints recipient, String text, File image) {
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
@@ -103,6 +102,13 @@ public class Message {
     public void setDate(Date date) {
         this.date = date;
     }
+    /**
+     * Gets the creation date of the message.
+     * @return The Date object representing the creation time. 
+     */
+    public Date getDate() {
+    return date;
+    }
     
     /**
      * Gets the text content of the message.
@@ -123,31 +129,30 @@ public class Message {
         }
         this.text = text;
     }
-
-    public String getImage() {
+    /**
+     * Gets the image content of the message.
+     * @return The message's image file.
+     */
+    public File getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(File image) {
         this.image = image;
         }
    
-    /**
-     * Gets the creation date of the message.
-     * @return The Date object representing the creation time. 
+     /**
+     * Sets the status of the message.
+     * @param status The status to set for the message.
      */
-    public Date getDate() {
-    return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public void setStatus(String status) {
         this.status = status;
     }
-
+    
+    /**
+     * Gets the status of the message.
+     * @return The status of the message.
+     */
     public String getStatus() {
         return status;
     }
