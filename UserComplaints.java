@@ -1,6 +1,5 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Locale.Category;
 
 /**
  * Represents a user who can send complaints/messages.
