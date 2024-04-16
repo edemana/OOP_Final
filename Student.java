@@ -32,20 +32,55 @@ public class Student extends UserComplaints {
      * @throws InvalidComplaintStatusException If the complaint is not in the "open" state.
      * @throws MessageSendException If there's a general error in sending the message.
      */
-    public boolean followUp(Complaint msg) {
-        if (!msg.getStatus().equals("open")) {  // Use .equals() for String comparison
-            throw new InvalidComplaintStatusException("Cannot follow up on a complaint that is not 'open'");
-        }
-
-        try {
-            Message followUp = new Message(this, msg.getRecipient(), 
-                                       String.format("Follow up message on this message: %s", msg.getText()));
-            msg.getRecipient().receive(followUp, this); 
+    public boolean followUp(Complaint msg){
+        //if the message is not responded to, send a follow up message
+        if (msg.getStatus() == "open"){
+            Message followUp = new Message(this, msg.getRecipient(), String.format("Follow up message on this message: %s", msg.getText()));
+            msg.getRecipient().receive(followUp, this);
             return true;
+        }
+        return false;
+    }
+    }
+    // Getters
+    /**
+     * Gets the major of the student.
+     * @return The student's major.
+     */
+    public String getMajor() {
+        return major;
+    }
 
-        } catch (Exception e) {
-            // Replace Exception with a more specific one if possible (e.g., MessageSendException)
-            throw new MessageSendException("Error sending follow-up message", e); 
-        } 
+    /**
+     * Gets the student ID.
+     * @return The student's ID.
+     */
+    public String getStudentID() {
+        return studentID;
+    }
+
+    // Setters
+    /**
+     * Sets the major of the student.
+     * @param major The new major of the student.
+     * @throws IllegalArgumentException If the provided major is null or empty.
+     */
+    public void setMajor(String major) {
+        if (major == null || major.isEmpty()) {
+            throw new IllegalArgumentException("Major cannot be null or empty");
+        }
+        this.major = major;
+    }
+
+    /**
+     * Sets the student ID.
+     * @param studentID The new student ID.
+     * @throws IllegalArgumentException If the provided student ID is null or empty.
+     */
+    public void setStudentID(String studentID) {
+        if (studentID == null || studentID.isEmpty()) {
+            throw new IllegalArgumentException("Student ID cannot be null or empty");
+        }
+        this.studentID = studentID;
     }
 }
