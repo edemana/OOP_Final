@@ -67,9 +67,6 @@ public class ComplainSystem extends JFrame {
                 stuffFrame.setLocationRelativeTo(ComplainSystem.this);
                 stuffFrame.setLayout(new FlowLayout());
                 stuffFrame.getContentPane().setBackground(Color.decode("#ADD8E6"));
-                JPasswordField passwordField = new JPasswordField();
-                passwordField.setEchoChar('*');
-
                 //adding fields to the frame
                 JLabel stuffNameLab = new JLabel("Department Name :");
                 JTextField stuffName = new JTextField(20);
@@ -115,11 +112,6 @@ public class ComplainSystem extends JFrame {
                         stuffMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         stuffMenu.getContentPane().setBackground(Color.decode("#ADD8E6"));
                         stuffMenu.setLayout(new FlowLayout());
-                        //other stuff in the frame
-                        JPanel stuffMenuPanel = new JPanel();
-                        stuffMenuPanel.setOpaque(false); //make panel transparent
-                        stuffMenuPanel.setLayout(new BoxLayout(stuffMenuPanel, BoxLayout.Y_AXIS));
-                        
                         Office chosenOffice = null;
                         for (Office off : offices){
                             if (off.getDepartmentName().equals(stuffName.getText()) && off.getPassword().equals(stuffPassword.getText())){
@@ -133,6 +125,10 @@ public class ComplainSystem extends JFrame {
                         }
                         final Office chosenOfficeFinal = chosenOffice;
                         JPanel inboxPanel = new JPanel();
+                        JScrollPane pane = new JScrollPane(inboxPanel);
+                        pane.setPreferredSize(new Dimension(1200, 500));
+                        pane.setOpaque(false);
+                        pane.getViewport().setOpaque(false);
                         inboxPanel.setLayout(new BoxLayout(inboxPanel, BoxLayout.Y_AXIS));
                         //variable to store the formated string
                         String inbox = "Inbox Messages: \n";
@@ -147,14 +143,17 @@ public class ComplainSystem extends JFrame {
                                     JOptionPane.showMessageDialog(response, "Response sent");
                                 }
                             });
+                            JLabel line = new JLabel("-------------------------------------------------");
+                            line.setAlignmentX(Component.CENTER_ALIGNMENT);
+                            inboxPanel.add(line);
                             JLabel currLabel = new JLabel(curr);
                             currLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
                             inboxPanel.add(currLabel);
                             inboxPanel.add(response);
                         }
                         inboxPanel.setOpaque(false);
-                        stuffMenuPanel.add(inboxPanel);
-                        stuffMenu.add(stuffMenuPanel);
+                        // stuffMenu.add(inboxPanel);
+                        stuffMenu.add(pane);
                         stuffMenu.setVisible(true);
                         stuffMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only the new frame
                         stuffMenu.addWindowListener(new WindowAdapter() {
@@ -399,6 +398,10 @@ public class ComplainSystem extends JFrame {
                                             JOptionPane.showMessageDialog(followUp, "Follow up message sent");
                                         }
                                     });
+                                    String linebreaker = "-----------------------------------";
+                                    JLabel line = new JLabel(linebreaker);
+                                    line.setAlignmentX(Component.CENTER_ALIGNMENT);
+                                    inboxPanel.add(line);
                                     inboxPanel.add(new JLabel(curr));
                                     inboxPanel.add(followUp);
                                 }
@@ -428,16 +431,26 @@ public class ComplainSystem extends JFrame {
                                 newFrame.setLayout(new FlowLayout());
                                 newFrame.getContentPane().setBackground(Color.decode("#ADD8E6"));
                                 JPanel outboxPanel = new JPanel();
+                                JScrollPane scrollPane = new JScrollPane(outboxPanel);
+                                scrollPane.setPreferredSize(new Dimension(1200, 600));
+                                scrollPane.setOpaque(false);
+                                scrollPane.getViewport().setOpaque(false);
+                                outboxPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
                                 outboxPanel.setLayout(new BoxLayout(outboxPanel, BoxLayout.Y_AXIS));
 
                                 for (Message msg : student.viewMessages("outbox")) {
                                     String curr = String.format("To: %s\nMessage: %s\nCategory: %s\n", msg.getRecipient().getUserName(), msg.getText(), ((Complaint) msg).getCategory());
-                                    outboxPanel.add(new JLabel(curr));
-                                    System.out.println(msg.getImage());
+                                    JLabel currLabel = new JLabel(curr);
+                                    currLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                                    outboxPanel.add(currLabel);
+                                    String linebreaker = "-----------------------------------";
+                                    JLabel line = new JLabel(linebreaker);
+                                    line.setAlignmentX(Component.CENTER_ALIGNMENT);
+                                    outboxPanel.add(line);
                                     displayImage(msg.getImage(), outboxPanel);
                                 }
                                 outboxPanel.setOpaque(false);
-                                newFrame.add(outboxPanel);
+                                newFrame.add(scrollPane);
                                 newFrame.setVisible(true);
 
                                 newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only the new frame
@@ -493,6 +506,8 @@ public class ComplainSystem extends JFrame {
                 newFrame.setVisible(true);
             }
         });
+        setFavicon("DeMorgan.jpg")
+        
     }
 
     private void displayImage(String image, JPanel panel) {
@@ -556,6 +571,19 @@ public class ComplainSystem extends JFrame {
         }
     }
 
+    // Method to set favicon for the frames
+    private void setFavicon(String imagePath) {
+        try {
+            // Load the image
+            ImageIcon icon = new ImageIcon(imagePath);
+            
+            // Set the icon image for this frame
+            setIconImage(icon.getImage());
+        } catch (Exception e) {
+            // Handle any exceptions
+            System.out.println("Error setting favicon: " + e.getMessage());
+        }
+    }
     public static void main(String[] args) {
         ComplainSystem frame = new ComplainSystem();
         frame.setVisible(true);

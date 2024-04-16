@@ -158,6 +158,14 @@ public class Message {
      * Sets the status of the message.
      * @param status The status to set for the message.
      */
+    public Date getDate() {
+    return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public void setStatus(String status) {
         this.status = status;
     }

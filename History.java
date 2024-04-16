@@ -31,7 +31,7 @@ public class History {
     }
 
         // Method to check if the message contains climate change issues
-    private boolean containsClimateChangeIssue(Complaint msg) {
+    private boolean containsClimateChangeIssue(Message msg) {
         // Get the category of the issue from the message
         Message.Category category = msg.getCategory();
 
