@@ -59,7 +59,7 @@ public class DeMorganComplaint {
             }
 
             // Simulate sending a complaint
-            File image = new File("complaint_image.jpg");
+            String image = "complaint_image.jpg";
             user.send(office, "Internet is down", image, Message.Category.Internet);
             setState(STATE_SEND);
             System.out.println("Complaint sent successfully.");
@@ -112,7 +112,7 @@ public class DeMorganComplaint {
                 System.out.println("No messages in inbox.");
             } else {
                 for (Message message : inboxMessages) {
-                    message.displayMessage();
+                    //message.displayMessage();
                 }
             }
         } else {

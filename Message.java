@@ -4,13 +4,14 @@ import java.util.Date;
 public class Message {
     private String text; // Text content of the message
     private String image; // Image attached to the message
-    public enum Category {Water, Electricity, Internet, Bins, Others}; // Enum for general complaint categories
+    public enum Category {Water, Electricity, Internet, Bins, CLIMATE_CHANGE, Others}; // Enum for general complaint categories
     public enum ClimateChangeCategory {Water, Electricity, Internet, Bins}; // Enum for climate change-related complaint categories
     private UserComplaints sender; // Sender of the message
     private UserComplaints recipient; // Recipient of the message
     private String ID; // Unique identifier for the message
     private Date date; // Date when the message was created
     private String status; // Status of the message (e.g., open, closed)
+    private Message.Category category; // Category of the message
 
    /**
      * Constructor for creating a general message.
@@ -168,5 +169,9 @@ public class Message {
      */
     public String getStatus() {
         return status;
+    }
+
+    public Message.Category getCategory() {
+        return category;
     }
 }

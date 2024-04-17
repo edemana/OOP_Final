@@ -15,7 +15,7 @@ public class Complaint extends Message {
      * @param image The image attached to the complaint.
      * @param category The category of the complaint.
      */
-    public Complaint(UserComplaints sender, Office recipient, String text, File image, Message.Category category) {
+    public Complaint(UserComplaints sender, Office recipient, String text, String image, Message.Category category) {
         // Call the superclass constructor to initialize sender, recipient, text, and image
         super(sender, recipient, text, image);
         // Set the chosen category for the complaint

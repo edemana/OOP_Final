@@ -47,10 +47,10 @@ public class History {
      */
     private boolean containsClimateChangeIssue(Message msg) {
         // Get the category of the issue from the message
-        Message.Category category = msg.getCategory();
+        Message.Category category =  msg.getCategory();
 
         // Check if the category is Climate Change
-        if (category == Message.Category.ClimateChangeCategory) {
+        if (category == Message.Category.CLIMATE_CHANGE) {
             return true; // If the category is Climate Change, return true
         } else {
             // If the category is not Climate Change, perform keyword analysis

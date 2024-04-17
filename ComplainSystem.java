@@ -38,7 +38,7 @@ public class ComplainSystem extends JFrame {
         add(ask);
         add(Box.createVerticalStrut(25));
 
-        //to add a panel so that we have two buttons, students and stuff login
+        //to add a panel so that we have two buttons, students and staff login
         JPanel mainPanel = new JPanel();
         mainPanel.setOpaque(false);
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -47,8 +47,8 @@ public class ComplainSystem extends JFrame {
         mainPanel.add(button);
         //skip some space
         mainPanel.add(Box.createVerticalStrut(20));
-        //creating stuff button
-        button2 = new JButton("STUFF");     //to add action to this button
+        //creating staff button
+        button2 = new JButton("STAFF");     //to add action to this button
         button2.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(button2);
 
@@ -61,66 +61,66 @@ public class ComplainSystem extends JFrame {
                 //upon selecting this, main frame should be hidden
                 setVisible(false);
 
-                //creating new frame, login for stuff
-                JFrame stuffFrame = new JFrame("STUFF LOGIN");
-                stuffFrame.setSize(700, 300);
-                stuffFrame.setLocationRelativeTo(ComplainSystem.this);
-                stuffFrame.setLayout(new FlowLayout());
-                stuffFrame.getContentPane().setBackground(Color.decode("#ADD8E6"));
+                //creating new frame, login for staff
+                JFrame staffFrame = new JFrame("STAFF LOGIN");
+                staffFrame.setSize(700, 300);
+                staffFrame.setLocationRelativeTo(ComplainSystem.this);
+                staffFrame.setLayout(new FlowLayout());
+                staffFrame.getContentPane().setBackground(Color.decode("#ADD8E6"));
                 //adding fields to the frame
-                JLabel stuffNameLab = new JLabel("Department Name :");
-                JTextField stuffName = new JTextField(20);
+                JLabel staffNameLab = new JLabel("Department Name :");
+                JTextField staffName = new JTextField(20);
                 //String username = JOptionPane.showInputDialog("Enter your username");
                 JLabel passwordLab = new JLabel("Password :");
-                JTextField stuffPassword = new JTextField(20);
+                JTextField staffPassword = new JTextField(20);
 
-                JPanel stuffLogPanel = new JPanel();
-                stuffLogPanel.setOpaque(false);
-                stuffLogPanel.setLayout(new BoxLayout(stuffLogPanel, BoxLayout.Y_AXIS));
+                JPanel staffLogPanel = new JPanel();
+                staffLogPanel.setOpaque(false);
+                staffLogPanel.setLayout(new BoxLayout(staffLogPanel, BoxLayout.Y_AXIS));
                 
                 JLabel msg = new JLabel("LOGIN HERE");
-                stuffLogPanel.add(msg); // upon selecting this  button, user should see their menu
+                staffLogPanel.add(msg); // upon selecting this  button, user should see their menu
 
-                stuffLogPanel.add(Box.createVerticalStrut(10));
+                staffLogPanel.add(Box.createVerticalStrut(10));
         
                 //adding to panel
-                stuffLogPanel.add(stuffNameLab);
-                stuffLogPanel.add(stuffName);
-                stuffLogPanel.add(Box.createVerticalStrut(10));
-                stuffLogPanel.add(passwordLab);
-                stuffLogPanel.add(stuffPassword);
-                stuffLogPanel.add(Box.createVerticalStrut(10));
+                staffLogPanel.add(staffNameLab);
+                staffLogPanel.add(staffName);
+                staffLogPanel.add(Box.createVerticalStrut(10));
+                staffLogPanel.add(passwordLab);
+                staffLogPanel.add(staffPassword);
+                staffLogPanel.add(Box.createVerticalStrut(10));
 
                 //adding panel to frame
-                // stuffFrame.add(stuffLogPanel); 
+                // staffFrame.add(staffLogPanel); 
                 
                 //button in the login
                 //setting the button action
-                JButton stuffOK = new JButton("OK");
-                stuffOK.addActionListener(new ActionListener() {
+                JButton staffOK = new JButton("OK");
+                staffOK.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent s){
                         
-                        //creating a stuff menu frame
-                        stuffFrame.setVisible(false);
+                        //creating a staff menu frame
+                        staffFrame.setVisible(false);
                         //creating new frame
-                        JFrame stuffMenu = new JFrame("Stuff Menu");
+                        JFrame staffMenu = new JFrame("Staff Menu");
                         //aligning the frame to center
                         // studentsMenu.setLocationRelativeTo(null);
-                        stuffMenu.setLocation(340, 250);
+                        staffMenu.setLocation(340, 250);
 
-                        stuffMenu.setSize(700, 300);
-                        stuffMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        stuffMenu.getContentPane().setBackground(Color.decode("#ADD8E6"));
-                        stuffMenu.setLayout(new FlowLayout());
+                        staffMenu.setSize(700, 300);
+                        staffMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        staffMenu.getContentPane().setBackground(Color.decode("#ADD8E6"));
+                        staffMenu.setLayout(new FlowLayout());
                         Office chosenOffice = null;
                         for (Office off : offices){
-                            if (off.getDepartmentName().equals(stuffName.getText()) && off.getPassword().equals(stuffPassword.getText())){
+                            if (off.getDepartmentName().equals(staffName.getText()) && off.getPassword().equals(staffPassword.getText())){
                                 chosenOffice = off;
                                 break;
                             }
                         }
                         if (chosenOffice == null) {
-                            JOptionPane.showMessageDialog(stuffOK, "Invalid department name or password");
+                            JOptionPane.showMessageDialog(staffOK, "Invalid department name or password");
                             System.exit(0);
                         }
                         final Office chosenOfficeFinal = chosenOffice;
@@ -152,31 +152,31 @@ public class ComplainSystem extends JFrame {
                             inboxPanel.add(response);
                         }
                         inboxPanel.setOpaque(false);
-                        // stuffMenu.add(inboxPanel);
-                        stuffMenu.add(pane);
-                        stuffMenu.setVisible(true);
-                        stuffMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only the new frame
-                        stuffMenu.addWindowListener(new WindowAdapter() {
+                        // staffMenu.add(inboxPanel);
+                        staffMenu.add(pane);
+                        staffMenu.setVisible(true);
+                        staffMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only the new frame
+                        staffMenu.addWindowListener(new WindowAdapter() {
                             public void windowClosed(WindowEvent g) {
-                                stuffFrame.setVisible(true); // Show the main frame when the new frame is closed
+                                staffFrame.setVisible(true); // Show the main frame when the new frame is closed
                             }
                         });
                     }
                 });
 
-                stuffLogPanel.add(stuffOK);
-                stuffFrame.add(stuffLogPanel); 
+                staffLogPanel.add(staffOK);
+                staffFrame.add(staffLogPanel); 
                 
 
-                stuffFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only the new frame
-                stuffFrame.addWindowListener(new WindowAdapter() {
+                staffFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only the new frame
+                staffFrame.addWindowListener(new WindowAdapter() {
                     public void windowClosed(WindowEvent n) {
                         setVisible(true); // Show the main frame when the new frame is closed
                     }
                 });
                 //making frame visible
-                stuffFrame.setVisible(true);
-                //to add the next frame with the methods in the stuff/offices class
+                staffFrame.setVisible(true);
+                //to add the next frame with the methods in the staff/offices class
                 
             }
         });
@@ -264,7 +264,7 @@ public class ComplainSystem extends JFrame {
                                 newFrame.setVisible(true); // Show the main frame when the new frame is closed
                             }
                         });
-                        //other stuff in the frame
+                        //other staff in the frame
                         JPanel menuPanel = new JPanel();
                         menuPanel.setOpaque(false); //make panel transparent
                         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
